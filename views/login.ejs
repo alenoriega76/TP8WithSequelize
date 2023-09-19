@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styleLogin.css">
+</head>
+<body>
+    <% if(errors){%>
+        <% errors.forEach(error =>{ %>
+            <h2> <%= error.msg %> </h2> 
+       <% } )%>
+
+    <%}%>
+        <header class="container">
+            <nav class="conta_nav">
+                <div class="logo">
+                       <img src="../imagenes/logoactualizadoenblanco.png"> 
+                </div>
+                
+                <div class="lista">
+                    <ul>
+                        <li><a href="../index.html"><ion-icon name="home"></ion-icon> </a></li>
+                        <li><a href="./products.html">Productos</a></li>
+                        <li><a href="./carrito.html">Carrito</a></li>
+                        <li><a href="./register.html">Register</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="principal">
+            <div class="card">
+                <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+                 <div class="card_title">
+                     <h1>Login </h1>
+                 </div>
+        <div class="form">
+             <form action="/login" method="POST">
+                 <span>
+                     <i class="fa fa-user"></i>
+                     <input type="email" placeholder="email" id="email"  name="email">
+                 </span><br>
+                 <span>
+                    <i class="fa-solid fa-lock"></i>
+                     <input type="password" placeholder="Password" id="password"  name="password">
+                 </span><br>
+                     <button id="boton">login</button>
+                    <a href="/views/register"> <button id="boton1">registrarse</button></a>
+            </form>
+        </div>
+         </div>
+     </div>
+        </main> 
+             
+     <footer class="container_footer">
+        <div class="redes">
+            <ul>
+                <li><a href="https://www.linkedin.com"><img src="../imagenes/iconmonstr-linkedin-3-240.png"></a></li>
+                <li><a href="https://es-la.facebook.com/"><img src="../imagenes/iconmonstr-facebook-3-240.png"></a></li>
+                <li><a href="https://www.instagram.com"><img src="../imagenes/iconmonstr-instagram-13-240.png"></a></li>
+                <li><a href="https://www.whatsapp.com/?lang=es"><img src="../imagenes/iconmonstr-whatsapp-3-240.png"></a></li>
+                <li><a href="https://www.telegram.com"><img src="../imagenes/iconmonstr-telegram-3-240.png"></a></li>
+            </ul>
+        </div>
+       
+        <div class="mapa">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d75439.25697703892!2d-67.68954355693359!3d-53.78100125930344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sar!4v1685576617710!5m2!1ses-419!2sar"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="parrafo">
+            <p>Lorem ipsum dolor sit ame Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse saepe non mollitia rem qui a magnam expedita ab voluptate praesentium, quod in laboriosam veritatis assumenda impedit, dolorum corrupti, blanditiis beatae?</p>
+        </div>
+    </footer>
+     <script src="./index.js"></script>
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
+</html>

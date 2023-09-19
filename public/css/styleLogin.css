@@ -1,0 +1,320 @@
+
+
+:root{
+    --colorHeader:#134074;
+    --colorFooter:#0B2545;
+    --colorbackground:#EEF4ED;
+    --cardColor:#8DA9C4;
+    --botonesColor:#133156;
+    --colorlineaCar:rgb(224, 141, 47);
+}
+/* importacion de la fuente */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Poltawski+Nowy:ital@1&family=Roboto:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{   
+    width: 100%;
+    height: 80px;
+    background: var(--colorHeader);
+}
+.conta_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo img{
+    width:60px;
+    height: 60px;
+    margin-left: 10px;
+}
+.lista ul{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    
+}
+ul li a{
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--colorbackground); 
+    cursor: pointer;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    
+}
+ul li a:hover{
+    color: var(--botonesColor);
+    background: var(--colorbackground);  
+    transition: transform;
+    transform: scale(2.1px);
+    border: solid 2px black;
+    border-radius: 4px;
+}
+
+.home a{
+    
+    border: 1px solid black;
+    align-items: center;
+    border-radius:5px;
+    padding: 10px;
+}
+ 
+.home a:hover{
+    color: var(--colorbackground);
+    
+}
+.card{
+    max-width:350px;
+    height: auto;
+    padding:10px;
+    border-radius: 20px;
+    background-color: var(--cardColor);
+	box-shadow: 0 0 17px rgb(25, 24, 30);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.card .icon-close{
+    position: absolute;
+    background-color: var(--colorFooter);
+    width: 45px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    color: var(--colorbackground);
+    font-size: 2em;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+.card_title {
+	text-align: center;
+	padding-top: 40px;
+}
+.card_title h1 {
+	color: var(--colorbackground);
+	font-size: 45px;
+    font-family: 'poltawsky', serif;
+	margin-bottom: 90px;
+}
+
+form {
+	text-align: center;
+}
+form input, button{
+    width: 280px;
+    height: 40px;
+    margin-bottom: 40px;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    box-sizing: border-box;
+	font-size: 15px;
+	color: rgb(24, 23, 23);
+    border-radius: 10px;
+}
+form input{
+    padding-left: 40px;
+}
+form i {
+	position: absolute;
+	left: 15px;
+	color: #2d2727;
+	font-size: 17px;
+	top: 2px;
+}
+form span {
+	position: relative;
+}
+form ::placeholder {
+    color: var(--botonesColor);
+    font-weight: bold;
+  }
+form button {
+	padding-left: 0;
+	background-color: grey;
+	letter-spacing: 1px;
+	font-weight: bold;
+    border-radius: 15px;
+}
+form button:hover {
+	box-shadow: 2px 2px 5px var(--botonesColor);
+	background-color: #072c2f;
+    color:var(--colorbackground);
+}
+/* footer  */
+.container_footer{
+    background-color: var(--colorFooter);
+    width: 100%;
+    min-height: 300px;
+    align-content: center;
+}
+.redes ul{
+    display: flex;
+    gap: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    
+}
+.redes ul img{
+    width: 30px;
+    height: 30px;
+}
+li{
+    margin-top: 20px;
+}
+.parrafo{
+    text-align: center;
+    margin-top: 40px;
+    color: var(--colorbackground);
+    padding: 10px;
+    font-size: 12px;
+}
+.mapa iframe{
+    height: 200px;
+    float: right;
+    margin-right: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+}
+@media(max-width:760px){
+    .container{
+        width: 100%;
+        height: auto;
+    }
+    .logo{
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        margin-bottom: 50px;
+     }
+    .container_footer{
+       display: flex;
+       flex-direction: column;
+    }
+    .redes ul{
+        margin-left: 100px;
+        padding: 10px;
+        margin-bottom: 40px; 
+      
+      }
+    div.mapa iframe {
+        align-items: center;
+    }
+  
+    .redes ul img{
+        width: 30px;
+        height: 30px;
+      
+    }
+    p{
+        font-size: 22px;
+    }
+   iframe{
+    align-content: center;
+    width: 90%;
+    margin-right: 40px;
+    margin-top: 10px;
+   }
+    .mapa iframe{
+        align-content: center;
+    }
+}
+ @media(max-width:480px){
+    .container{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-content: center;
+    }
+    .logo img{
+        margin-left: 40px;
+        width: 40px;
+        height: 40px;
+    }
+    .conta_nav{
+    flex-direction: column;
+     }
+    .lista ul{
+     flex-direction: column;
+    margin-left: 10px;
+    }
+    .banner{
+    width: 100%;
+    }
+    .card{
+        height: auto;
+    }
+    form{
+        width: auto;
+        flex-direction: column;
+        height: auto;
+    }
+    form input,button{
+        width: 80%;
+        display: block;
+        margin-left: 20px;
+    }
+    form i {
+        margin-left: 65px;
+        align-items: center;
+        
+    }
+    .container_body {
+        flex-direction: column;
+        width: 80%;
+        margin-left: 40px;
+    
+    }
+    .card{
+    width: 100%;
+    height: auto;
+   
+    }
+    .card_image{
+    width: 90%;
+    }
+    .buy{
+    width: 70px;
+    height: 30px;
+  
+    }
+ /* pie de pagina*/
+    .container_footer{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .redes ul{
+        margin-left: 30px;
+    }
+    .redes ul li img{
+        width: 20px;
+        height: 20px;
+    }
+    .parrafo{
+        font-size: 10px;
+        text-align: center;
+    }
+    .mapa iframe{
+        margin-top: 20px;
+        width:80%;
+        height: 180px;
+        
+    }
+ }

@@ -1,0 +1,267 @@
+
+:root{
+    --colorHeader:#134074;
+    --colorFooter:#0B2545;
+    --colorbackground:#EEF4ED;
+    --cardColor:#8DA9C4;
+    --botonesColor:#133156;
+    --colorlineaCar:rgb(224, 141, 47);
+}
+/* importacion dela fuente */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Poltawski+Nowy:ital@1&family=Roboto:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{   
+    width: 100%;
+    height: 80px;
+    background: var(--colorHeader);
+}
+.conta_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo img{
+    width:80px;
+    height: 80px;
+    float: left;
+    padding: 10px;
+
+}
+.lista ul{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-right: 10px;
+    
+}
+ul li a{
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--colorbackground);
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+ul li a:hover{
+    color: var(--botonesColor);
+    background: var(--colorbackground); 
+    transition: transform;
+    transform: scale(2.1px);
+    border: solid 2px black;
+    border-radius: 4px;
+}
+
+.container_body{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-left: 45px;
+ }
+ h1{
+    text-align: center;
+ }
+.card{
+    background: var(--cardColor);
+    width: 270px;
+    min-height: 400px;
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px var(--botonesColor);
+    border-radius: 10px;
+}
+.card img{
+    width: 100%;
+    height: 150px;  
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+h2{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+p{
+    font-size: 14px;
+    text-align: center;
+    color: var(--colorbackground);
+    margin-bottom: 20px;
+}
+h6{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+/* botones*/
+.buy{
+    width: 120px;
+    height: 30px;
+    color: var(--colorbackground);
+    background-color: var(--botonesColor);
+    border-radius: 10px;
+}
+.buy:hover{
+    background-color:var(--coorbackground);
+    color: var(--colorFooter);
+}
+
+/* estilo de contorno de tarjeta*/
+.card:hover{
+    border: 2px solid var(--colorlineaCar);
+    transform: scale(1.1);
+    border-radius: 10px;
+}
+/*footer*/
+.container_footer{
+    background-color: var(--colorFooter);
+    width: 100%;
+    min-height: 300px;
+    align-content: center;
+}
+.redes ul{
+    display: flex;
+    gap: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    
+}
+.redes ul img{
+    width: 30px;
+    height: 30px;
+}
+li{
+    margin-top: 20px;
+}
+.parrafo{
+    text-align: center;
+    margin-top: 40px;
+    color: var(--colorbackground);
+    padding: 10px;
+    font-size: 12px;
+}
+.mapa iframe{
+    height: 200px;
+    float: right;
+    margin-right: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+}
+@media(max-width:760px){
+    .container{
+        width: 100%;
+        height: auto;
+    
+    }
+    
+    .logo{
+        width: 20px;
+        height: 20px;
+        margin-left: 20px;
+        margin-bottom: 50px;
+        margin-bottom: 50px;
+     }
+    .container_footer{
+       display: flex;
+       flex-direction: column;
+    }
+    .redes ul{
+        margin-left: 100px;
+        padding: 10px;
+        margin-bottom: 40px; 
+      
+      }
+    div.mapa iframe {
+        align-items: center;
+    }
+  
+    .redes ul img{
+        width: 30px;
+        height: 30px;
+      
+    }
+    p{
+        font-size: 22px;
+    }
+   iframe{
+    align-content: center;
+    width: 90%;
+    margin-right: 40px;
+    margin-top: 10px;
+   }
+    .mapa iframe{
+        align-content: center;
+    }
+}
+ @media(max-width:480px){
+    .container{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-content: center;
+    }
+    .logo img{
+        margin-left: 50px;
+    }
+    .conta_nav{
+    flex-direction: column;
+     }
+    .lista ul{
+     flex-direction: column;
+    margin-left: 10px;
+    }
+    .banner{
+    width: 100%;
+    }
+    .container_body {
+        flex-direction: column;
+        width: 80%;
+        margin-left: 40px;
+    
+    }
+    .card{
+    width: 100%;
+    height: auto;
+   
+    }
+    .card_image{
+    width: 90%;
+    }
+    .buy{
+    width: 70px;
+    height: 30px;
+  
+    }
+ /* pie de pagina*/
+    .container_footer{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .redes ul{
+        margin-left: 30px;
+    }
+    .redes ul li img{
+        width: 20px;
+        height: 20px;
+    }
+    .parrafo{
+        font-size: 10px;
+        text-align: center;
+    }
+    .mapa iframe{
+        margin-top: 20px;
+        width:90%;
+        height: 180px;
+        
+    }
+ }
