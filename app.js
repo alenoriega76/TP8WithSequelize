@@ -23,7 +23,7 @@ app.use('/products',require('./routes/indexRoutes'));
 app.use('/usuarios',require('./routes/indexRoutes'));
 app.use('/products/:id',require('./routes/indexRoutes'));
 app.use('/usuarios/edit/:id',require('./routes/indexRoutes'));
-app.use('/usuarios/delete',require('./routes/indexRoutes'));
+app.use('/usuarios/delete/:id',require('./routes/indexRoutes'));
 app.listen(port,()=>{
     console.log(`APP listening on port ${port}`);
 });

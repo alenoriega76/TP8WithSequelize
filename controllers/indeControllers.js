@@ -1,7 +1,5 @@
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-// const { writeData, readData } = require("../service/productService");
-// const { readDataUsuarios, writeDataUsuarios } = require("../service/usuariosService");
 const session = require('express-session');
 const producto = require("../model/modelProduct");
 const usuario = require("../model/modelUser");
@@ -17,80 +15,12 @@ const renderLogin = (req, res) => {
 const renderRegister = (req, res) => {
     res.render('register', { errors: [] });
 }
-
-
-/* const loginSesion = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        // Obtener el usuario de la base de datos
-        const user = await usuario.findOne({ where: { email } });
-
-        if (!user) {
-            return res.status(404).send("Usuario no encontrado");
-        }
-
-        // Comparar la contraseña ingresada con la contraseña hasheada
-        bcrypt.compare(password, user.password, async (err, result) => {
-            if (err) {
-                return res.status(400).send("Error al comparar contraseñas");
-            }
-            
-            if (result) {
-                console.log("Contraseña correcta");
-
-                // Almacena el objeto completo del usuario en la sesión
-                req.session.usuario = user;
-
-                // Redirige a la página de perfil
-                res.redirect('/perfil');
-            } else {
-                console.log("Contraseña incorrecta");
-                res.status(401).send("Contraseña incorrecta");
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error al autenticar usuario");
-    }
-};
-
-
-const logueado = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const user = await usuario.findOne({ where: { email } }); // Obtener el usuario de la base de datos
-
-        if (!user) {
-            return res.status(404).send("Usuario no encontrado");
-        }
-
-        bcrypt.compare(password, user.password, (err, result) => {
-            if (err) {
-                return res.status(400).send("Error al comparar contraseñas");
-            }
-            if (result) {
-                console.log("Contraseña correcta");
-
-                // Almacena el objeto completo del usuario en la sesión
-                req.session.usuario = user;
-
-                // Redirige a la página de perfil
-                res.redirect('/perfil');
-            } else {
-                console.log("Contraseña incorrecta");
-                res.status(401).send("Contraseña incorrecta");
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error al autenticar usuario");
-    }
-};
- */
-
-
+const renderProductos= (req,res) => {
+    res.render('productos', { errors: [] });
+}
+const renderNuevoProducto = (req,res) => {
+    res.render('newProduct', { errors: [] });
+}
 const loginSesion = async (req, res) => {
     const { email, password } = req.body;
 
@@ -101,13 +31,12 @@ const loginSesion = async (req, res) => {
             return res.status(404).send('Usuario no encontrado');
         }
 
-        // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (passwordMatch) {
             console.log('Contraseña correcta');
             req.session.usuario = user;
-            res.redirect('perfil');
+            res.render('perfil', { usuario: user }); // Pasar el usuario como variable a la vista
         } else {
             console.log('Contraseña incorrecta');
             res.status(401).send('Contraseña incorrecta');
@@ -117,55 +46,26 @@ const loginSesion = async (req, res) => {
         res.status(500).send('Error al autenticar usuario');
     }
 };
-
-/* const logueado = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const user = await usuario.findOne({ where: { email } });
-
-        if (!user) {
-            return res.status(404).send('Usuario no encontrado');
-        }
-
-        console.log('Usuario encontrado, comprobando contraseña...');
-
-        // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (passwordMatch) {
-            console.log('Contraseña correcta');
-            req.session.usuario = user;
-            res.redirect('/perfil');
-        } else {
-            console.log('Contraseña incorrecta');
-            res.status(401).send('Contraseña incorrecta');
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error al autenticar usuario');
-    }
-};
- */
 
 // creo el registro 
 const createUser = async (req, res) => {
     const { name, email, password, userName, fec_nac } = req.body;
     try {
-        // Generar el hash de la contraseña
+        
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const newUser = await usuario.create({
             name,
             email,
-            password: hashedPassword, // Almacenar la contraseña hasheada en la base de datos
+            password: hashedPassword, 
             userName,
             fec_nac
         });
         
         console.log("Usuario creado con éxito")
         res.status(200).json(newUser); 
+        res.render('/')
     } catch (e) {
         console.log(e);
         res.status(500).send("Error al crear un usuario");
@@ -226,9 +126,9 @@ const obtenerUsuarioId = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
-        const user = await usuario.findByPk(id); // busco por id
+        const user = await usuario.findByPk(id); 
         if (!user) {
-            return res.status(404).send("Usuario no encontrado"); // Corrección de "sen" a "send"
+            return res.status(404).send("Usuario no encontrado"); 
         }
         await user.destroy();
         res.status(200).send("Usuario eliminado con éxito");
@@ -236,55 +136,53 @@ const deleteUser = async (req, res) => {
         console.log(e);
         res.status(500).send("Error al eliminar usuario");
     }
-}
-
+};
 //////////productos!!!!!!/////////////
 // creo un producto nuevo
 
 const createProduct = async (req, res) => {
-
+    console.log(req.body);
+    const { name, description, price } = req.body;
+  
     try {
-        const { name, description, price } = req.body;
-        const newProduct = await producto.create({
-            name, description, price
-        })
-        res.status(200).json(newProduct);// devuelve el producto
+       
+      const newProduct = await producto.create({
+        name,
+        description,
+        price,
+      });
+  
+      console.log("Producto Creado con éxito");
+      res.redirect('/products');
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ err: "Error al crear el producto" });
-
+      console.log(err);
+      res.status(500).json({ err: "Error al crear el producto" });
     }
-
-};
-//obtengo los productos
-
-const getProduct = async (req, res) => {
-
+  };
+  
+  // Función para obtener todos los productos
+  const getProduct = async (req, res) => {
     try {
-        const products = await producto.findAll();
-        res.status(200).json(products);
-
+      const products = await producto.findAll();
+      res.render('productos', { products });
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ err: "Error al obtener el producto" });
-
-    };
-
-};
-
+      console.log(err);
+      res.status(500).json({ err: "Error al obtener los productos" });
+    }
+  }
 //actualiza el producto
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, description, price } = req.body;
-        const product = await producto.findByPk(id); // Cambia "producto" a "producto" en minúscula
+        const product = await producto.findByPk(id); 
         if (!product) {
             return res.status(404).json({ error: "Producto no encontrado" });
         }
         product.name = name;
         product.description = description;
         product.price = price;
-        await product.save(); // se guardan los datos en la base de datos
+        await product.save(); 
         res.status(200).json(product);
     } catch (err) {
         console.log(err);
@@ -340,7 +238,7 @@ module.exports = {
     obtenerProductoId,
     renderLogin,
     renderRegister,
-    //logueado,
-    loginSesion
- 
+    loginSesion,
+    renderProductos,
+    renderNuevoProducto
 };

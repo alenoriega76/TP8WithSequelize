@@ -6,7 +6,7 @@ const validateUpdate = require('../middleware/update');
 const { createUser, getProduct, createProduct, obtenerProductoId, deleteProduct,
        renderIndex, renderRegister, renderLogin,
         loginSesion, getUser, deleteUser, updateUser, obtenerUsuarioId,
-       updateProduct } = require('../controllers/indeControllers');
+       updateProduct,renderNuevoProducto,renderProductos } = require('../controllers/indeControllers');
 
 // rutas para Login y Register
 router.get('/login', renderLogin);
@@ -18,8 +18,8 @@ router.post('/register', validate,createUser);
 
 // rutas para operaciones CRUD
 router.get('/', renderIndex);
-router.get('/products', getProduct);
-// router.post('/products', createProduct);
+router.get('/products',getProduct);
+router.post('/products',renderNuevoProducto ,createProduct);
 router.get('/products/:id', obtenerProductoId);
 router.get('/usuarios/:id', obtenerUsuarioId)
 router.delete('/products/:id', deleteProduct);

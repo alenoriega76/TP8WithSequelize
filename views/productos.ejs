@@ -1,3 +1,4 @@
+<!-- productos.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,15 @@
     <title>Products</title>
 </head>
 <body>
-    <h1 > Products</h1>
+    <h1>Productos</h1>
+    <ul>
+        <% products.forEach(product => { %>
+          <li>
+            <strong>Nombre:</strong> <%= product.name %><br>
+            <strong>Descripción:</strong> <%= product.description %><br>
+            <strong>Precio:</strong> <%= product.price %>
+          </li>
+        <% }); %>
+    </ul>
 </body>
 </html>
