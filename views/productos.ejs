@@ -7,13 +7,13 @@
     <title>Products</title>
 </head>
 <body>
-    <h1>Productos</h1>
+    <h1>Productos Creados </h1>
     <ul>
-        <% products.forEach(product => { %>
+        <% products.forEach(producto => { %>
           <li>
-            <strong>Nombre:</strong> <%= product.name %><br>
-            <strong>Descripción:</strong> <%= product.description %><br>
-            <strong>Precio:</strong> <%= product.price %>
+            <strong>Nombre:</strong> <%= producto.name %><br>
+            <strong>Descripción:</strong> <%= producto.description %><br>
+            <strong>Precio:</strong> <%= producto.price %>
           </li>
         <% }); %>
     </ul>

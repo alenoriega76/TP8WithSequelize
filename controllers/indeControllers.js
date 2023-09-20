@@ -15,10 +15,10 @@ const renderLogin = (req, res) => {
 const renderRegister = (req, res) => {
     res.render('register', { errors: [] });
 }
-const renderProductos= (req,res) => {
+const renderProductos = (req, res) => {
     res.render('productos', { errors: [] });
 }
-const renderNuevoProducto = (req,res) => {
+const renderNuevoProducto = (req, res) => {
     res.render('newProduct', { errors: [] });
 }
 const loginSesion = async (req, res) => {
@@ -51,21 +51,21 @@ const loginSesion = async (req, res) => {
 const createUser = async (req, res) => {
     const { name, email, password, userName, fec_nac } = req.body;
     try {
-        
+
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const newUser = await usuario.create({
             name,
             email,
-            password: hashedPassword, 
+            password: hashedPassword,
             userName,
             fec_nac
         });
-        
+
         console.log("Usuario creado con éxito")
-        res.status(200).json(newUser); 
-        res.render('/')
+        res.status(200).json(newUser);
+
     } catch (e) {
         console.log(e);
         res.status(500).send("Error al crear un usuario");
@@ -126,9 +126,9 @@ const obtenerUsuarioId = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id } = req.params;
     try {
-        const user = await usuario.findByPk(id); 
+        const user = await usuario.findByPk(id);
         if (!user) {
-            return res.status(404).send("Usuario no encontrado"); 
+            return res.status(404).send("Usuario no encontrado");
         }
         await user.destroy();
         res.status(200).send("Usuario eliminado con éxito");
@@ -141,48 +141,50 @@ const deleteUser = async (req, res) => {
 // creo un producto nuevo
 
 const createProduct = async (req, res) => {
-    console.log(req.body);
-    const { name, description, price } = req.body;
-  
+    //console.log("Request Body:", req.body);
+
+
     try {
-       
-      const newProduct = await producto.create({
-        name,
-        description,
-        price,
-      });
-  
-      console.log("Producto Creado con éxito");
-      res.redirect('/products');
+        const { name, description, price } = req.body;
+        console.log(req.body);
+        const newProduct = await producto.create({
+            name,
+            description,
+            price,
+        });
+        console.log("Producto Creado con éxito");
+        const products = await producto.findAll();
+        //res.status(200).json(newProduct)
+        res.render('productos', { products: [newProduct] });
     } catch (err) {
-      console.log(err);
-      res.status(500).json({ err: "Error al crear el producto" });
+        console.error(err);
+        res.status(500).json({ error: "Error al crear el producto",err:message });
     }
-  };
-  
-  // Función para obtener todos los productos
-  const getProduct = async (req, res) => {
+};
+
+// Función para obtener todos los productos
+const getProduct = async (req, res) => {
     try {
-      const products = await producto.findAll();
-      res.render('productos', { products });
+        const products = await producto.findAll();
+        res.render('productos', { products });
     } catch (err) {
-      console.log(err);
-      res.status(500).json({ err: "Error al obtener los productos" });
+        console.log(err);
+        res.status(500).json({ err: "Error al obtener los productos" });
     }
-  }
+}
 //actualiza el producto
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, description, price } = req.body;
-        const product = await producto.findByPk(id); 
+        const product = await producto.findByPk(id);
         if (!product) {
             return res.status(404).json({ error: "Producto no encontrado" });
         }
         product.name = name;
         product.description = description;
         product.price = price;
-        await product.save(); 
+        await product.save();
         res.status(200).json(product);
     } catch (err) {
         console.log(err);
