@@ -19,7 +19,7 @@ const renderProductos = (req, res) => {
     res.render('productos', { errors: [] });
 }
 const renderNuevoProducto = (req, res) => {
-    res.render('newProduct', { errors: [] });
+    res.render('nuevoProducto', { errors: [] });
 }
 const loginSesion = async (req, res) => {
     const { email, password } = req.body;
@@ -142,8 +142,6 @@ const deleteUser = async (req, res) => {
 
 const createProduct = async (req, res) => {
     //console.log("Request Body:", req.body);
-
-
     try {
         const { name, description, price } = req.body;
         console.log(req.body);
@@ -155,7 +153,7 @@ const createProduct = async (req, res) => {
         console.log("Producto Creado con éxito");
         const products = await producto.findAll();
         //res.status(200).json(newProduct)
-        res.render('productos', { products: [newProduct] });
+        res.render('productos', { products});
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Error al crear el producto",err:message });

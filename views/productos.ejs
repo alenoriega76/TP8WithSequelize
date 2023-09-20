@@ -11,6 +11,7 @@
     <ul>
         <% products.forEach(producto => { %>
           <li>
+            <strong>Id:</strong> <%= producto.idProduct %><br>
             <strong>Nombre:</strong> <%= producto.name %><br>
             <strong>Descripción:</strong> <%= producto.description %><br>
             <strong>Precio:</strong> <%= producto.price %>
